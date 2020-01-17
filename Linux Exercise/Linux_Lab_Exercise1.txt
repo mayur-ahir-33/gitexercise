@@ -1,0 +1,69 @@
+
+1. check the current working directory command , and get list with including hidden file
+as well filesize of each of file and folder.
+
+	$ pwd && ls -lhA
+
+2. then create the 2 folder name with intern-2020 & rapidops-2020.
+
+	$ mkdir intern-2020 rapidops-2020
+
+3. then create 2 file within intern-2020 folder, filename is dev.txt helloworld.txt.
+
+	$ touch intern-2020/dev.txt intern-2020/helloworld.txt
+
+4. open the dev.txt file and write down here about any content, and in helloworld.txt file
+write the “helloworld” with using echo command.
+
+	$ cat > dev.txt ; echo "helloworld"> helloworld.txt
+
+5. Now copy dev.txt and helloworld.txt into rapidops-2020 folder.
+
+	$ cp {dev.txt,helloworld.txt} ../rapidops-2020
+
+6. Now go to the rapidops-2020 folder and rename that 2(dev.txt, helloworld.txt) files.
+
+	$ cd ..
+	$ cd rapidops-2020
+	$ mv dev.txt file1.txt
+	$ mv hellowrold.txt file2.txt
+
+7. In the same directory path give the read only permission to dev.txt for file’s owner and
+give read-write-execute for owner & read-write permission for group to helloworld.txt.
+
+	$ chmod 400 dev.txt
+	$ chmod 760 helloworld.txt
+
+8. Now create archive file within same directory and shift into intern-2020 directory.
+	$ tar cvf archive.tar *.txt ; mv archive.tar ../intern-2020
+
+9. Now copy that archive file within same directory location and remove the older archive
+file.
+
+	$ cp archive.tar archive1.tar ; rm archive.tar
+
+10. Using the command find out the dev.txt file.
+
+	$ find -name dev.txt
+
+11. Check the cpu, memory usage with using CLI.
+
+	$ top
+
+12. Check the disk usage and free disk space with using CLI.
+	$ df -h
+
+13. Check the all system process and filter out any of one process service.
+
+	$ ps -e ; ps -T
+
+14. Retrieve the content from web server with using CLI.
+
+	$ wget https://releases.mattermost.com/desktop/4.3.2/mattermost-desktop-4.3.2-linux-i386.deb
+
+15. Check your network interface information with using CLI.
+
+	$ ifconfig
+
+
+

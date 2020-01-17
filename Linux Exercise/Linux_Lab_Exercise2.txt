@@ -1,0 +1,190 @@
+
+1. Write a shell script that adds an extension “.new” to all the files in the directory.
+
+#! /bin/bash
+
+for f in * 
+do
+	mv $f ${f}.new
+done
+
+2. Delete file which has special characters. “ -“, “—“, “*”, “$”.
+
+#! /bin/bash
+
+for f in  $(grep -l -e "-" -e "_" -e "*" -e "$" *)  
+do
+	echo "Deleted files are $f"
+	rm $f
+done
+
+3. Write a shell script that take two input numbers from user at run-time and display arithmetic
+operation on that numbers, find out max, & min number from them, find weather that numbers
+negative or positive.
+
+#! /bin/bash
+
+read -p "Enter first number: " num1
+read -p "Enter second number: " num2
+
+echo "Addition: " && echo "$num1 + $num2" | bc
+echo "Subtraction: " && echo "$num1 - $num2" | bc
+echo "Multiplication: " && echo "$num1 * $num2" | bc
+echo "Division: " && echo "scale=2; $num1 / $num2" | bc
+
+if (( $num1 > $num2 ))
+then 
+	echo "Max: $num1"
+	echo "Min: $num2"
+else
+	echo "Max: $num2"
+	echo "Min: $num1"
+fi
+
+if (( $num1>-1 ))
+then
+	echo "$num1 is a positive number."
+else
+	echo "$num1 is a negative number."
+fi
+
+if (( $num2>-1 ))
+then
+	echo "$num2 is a positive number."
+else
+	echo "$num2 is a negative number."
+fi
+
+4. Write a shell script that take one input number from user and print 1 to n number using three
+loops (For, while, until). (N = entered number).
+
+#! /bin/bash
+echo "Enter number  "
+read num
+echo "For Loop Series"
+for (( i=1; i<=$num; i++ ))
+do
+    echo $i
+done  
+echo "Until Loop Series"
+a=1
+until [ ! $a -le $num ]
+do
+   echo $a
+   a=`expr $a + 1`
+done
+b=1
+echo "While Loop Series"
+while [ $b -le $num ]
+do
+   echo $b
+   b=`expr $b + 1`
+done
+
+5. Write a shell script to display the last updated file of the newest file in a directory.
+#! /bin/bash
+ls -t1 |  head -n 1
+
+6. Write a shell script to get the total count of the word “Linux” in all the “.txt” files and also across files present in sub-directories.
+#! /bin/bash 
+find  . -name *.txt -exec grep -c Linux '{}' \; | awk '{x+=$0;}END{print x}'
+
+7. Write a shell script that copy all the directories, sub-directories and files from one location to
+another specific location.
+#! /bin/bash 
+echo "Enter source directory"
+read source
+echo "Enter destination directory"
+read destination
+cp -r $source $destination
+
+8. Display specific number of lines as follow:
+
+(i). Display first and last 10 lines of file contains
+#! /bin/bash 
+echo "Enter file"
+read file
+echo "-----First 10 lines-----"
+head -n 10 $file
+echo "-----Last 10 lines-----"
+tail -n 10 $file
+
+(ii). Display line no. 3 to 8 from file contains.
+#! /bin/bash 
+echo "Enter file"
+read file
+head -n 8 $file | tail -6
+
+(iii). Display 7 lines and start from second last line in reverse manner.
+#! /bin/bash 
+echo "Enter file"
+read file
+tail -n 9 $file | head -7 | tac
+
+9. Perform following task:
+
+(i). Add two new users and two groups
+
+#! /bin/bash 
+echo "Enter user1 name: "
+read user1
+echo "Enter user2 name: "
+read user2
+
+echo "Enter group1 name: "
+read group1
+echo "Enter group2 name: "
+read group2
+
+useradd $user1
+useradd $user2
+groupadd $group1
+groupadd $group2
+
+(ii). Login as one user and then create new file
+
+#! /bin/bash
+
+echo "Enter username: "
+read username
+
+su $username
+
+echo "Enter filename: "
+read filename
+touch $filename
+
+(iii). Send created file from one user to another user
+
+#! /bin/bash
+
+echo "Enter file location on user1: "
+read source
+echo "Enter Destination Location on user2: "
+read destination
+
+cp $source $destination
+
+(iv). Login as second user and copy that file from user2 to user1(in same system)
+
+#! /bin/bash
+
+echo "Enter user2 username: "
+read username
+
+echo "Enter file location on user2: "
+read source
+echo "Enter Destination Location on user1: "
+read destination
+
+cp $source $destination
+
+10. Task to find all files from folder where file contains string 'abc'
+#! /bin/bash 
+echo "Enter Folder: "
+read folder
+
+cd $folder
+grep "abc" *
+
+
