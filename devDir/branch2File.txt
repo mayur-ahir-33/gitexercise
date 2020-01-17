@@ -1,1 +1,3 @@
 modified content in branch 2.
+
+Stashing example modification.
