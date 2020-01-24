@@ -1,0 +1,129 @@
+.navbar-nav {
+  color: black;
+}
+
+.nav-item .nav-link {
+  color: black;
+}
+
+.nav-item:hover {
+  background-color: deepskyblue;
+}
+
+#servicesdd:hover a:hover {
+  background-color: deepskyblue;
+}
+
+#servicesdd:hover .dropdown-menu {
+  display: block;
+}
+
+.headline {
+  font-size: 32px;
+  text-align: center;
+}
+
+.desc {
+  color: lightgrey;
+}
+
+.designFont .container .row .fas, .designFont .container .row .fab {
+  color: white;
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #3399ff), color-stop(50%, #4da6ff));
+  background: linear-gradient(to right, #3399ff 50%, #4da6ff 50%);
+  padding: 5%;
+  width: 100px;
+  height: 100px;
+  margin: 10%;
+}
+
+.fa-mobile-alt, .fa-telegram-plane, .fa-bullhorn {
+  color: white;
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #3399ff), color-stop(50%, #4da6ff));
+  background: linear-gradient(to right, #3399ff 50%, #4da6ff 50%);
+  padding: 5%;
+  width: 100px;
+  height: 100px;
+  margin: 10%;
+}
+
+.image {
+  height: 250px;
+  width: 350px;
+  margin: 20px;
+}
+
+.image:hover .overlay {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  height: 250px;
+  width: 350px;
+  margin: 20px;
+  opacity: 0;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+  background-color: #4da6ff;
+}
+
+.images:hover .overlay {
+  opacity: 0.5;
+}
+
+.fa-link {
+  color: white;
+  border: 1px solid whitesmoke;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  height: 40px;
+  width: 40px;
+  padding: 3px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+.fa-search-plus {
+  color: white;
+  border: 1px solid whitesmoke;
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  height: 40px;
+  width: 40px;
+  padding: 3px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+.fa-user:hover {
+  color: #eee;
+}
+
+.contactForm {
+  background-image: url("img/background.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.contactForm .transparent-input {
+  background-color: transparent;
+  border: none;
+}
+
+.fa-facebook-f, .fa-twitter, .fa-google-plus-g, .fa-linkedin-in {
+  background-color: #4da6ff;
+  height: 40px;
+  width: 40px;
+  padding: 5%;
+  text-align: center;
+  color: whitesmoke;
+}
+/*# sourceMappingURL=main.css.map */
