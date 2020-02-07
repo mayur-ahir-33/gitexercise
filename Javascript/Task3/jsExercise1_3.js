@@ -25,22 +25,26 @@ function check() {
 
 function add() {
     userArr.push(createObj(fname.value, lname.value));
-    let rowCount = table.rows.length,
-        row = table.insertRow(rowCount),
+    
+    fname.value = '';
+    lname.value = '';
+}
+
+function show() {
+    for (const x of userArr) {
+
+    const rowCount = table.rows.length;
+    let row = table.insertRow(rowCount),
         fnameCell = row.insertCell(0),
         lnameCell = row.insertCell(1),
         editCell = row.insertCell(2),
         deleteCell = row.insertCell(3);
 
-        for (const x of userArr) {
-            fnameCell.innerHTML = x.fname;
+                    fnameCell.innerHTML = x.fname;
             lnameCell.innerHTML = x.lname;
             editCell.innerHTML = '<span onclick="updateRow(this)"><i class="fa fa-pencil" aria-hidden="true"></i></span>';
             deleteCell.innerHTML = '<span onclick="deleteTableRow(this)"><i class="fa fa-trash" aria-hidden="true"></i></span>';
         }
-    
-        fname.value = '';
-        lname.value = '';
 }
 
 function update() {
