@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 2_12</title>
+</head>
+<body>
+    <script>
+        function enterAt(str1, str2, pos){
+
+            if(!pos) {
+                pos = 1;
+            }
+
+            let before = str1.slice(0, pos);
+            let after = str1.slice(pos);
+
+            let res = before+str2+after;
+
+            console.log(res);
+        }
+    </script>
+</body>
+</html>

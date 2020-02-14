@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 2_2</title>
+</head>
+<body>
+
+    <h2 id="output"></h2>
+    
+    <script>
+    
+    let n = prompt("Enter number");
+    let output = ''
+    let flag = false;
+    let arr = Array.from(n.toString()).map(Number);
+
+    for (const i of arr) {
+        if(i % 2 === 0 && flag === false) {
+            output += i.toString();
+            flag = true;
+        }
+        else if(i % 2 === 0 && flag === true) {
+            output = output + '-' + i.toString();
+        }
+        else {
+            output += i.toString();
+            flag = false;
+        }        
+    }
+
+    document.getElementById("output").innerHTML = output;
+
+    </script>
+</body>
+</html>

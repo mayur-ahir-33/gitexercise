@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 2_17</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center mt-5">
+        <input type="text" class="form-control mx-1" id="rowno" placeholder="Number of rows">
+        <input type="text" class="form-control mx-1" id="colno" placeholder="Number of columns">
+        <button type="submit" class="btn btn-primary mx-1" id="btnAdd" onclick="createTable()">Create</button>
+    </div>
+
+    <div class="container mt-3">
+        <div id="tableDiv">
+            
+        </div>
+    </div>
+
+
+    <script>
+
+        function createTable() {
+            let table = document.createElement('table');
+            let rowsnum = document.getElementById('rowno');
+            let colsnum = document.getElementById('colno');
+            let tableDiv = document.getElementById('tableDiv');
+
+            table.classList.add('table');
+            
+            for(let i=0; i<(+rowsnum.value); i++) {
+                let tr = table.insertRow();
+                for(let j=0; j<(+colsnum.value); j++) {
+                    let td = tr.insertCell();
+                    td.appendChild(document.createTextNode('Row-'+ i + ', Col-' + j));
+                }
+            }
+
+            tableDiv.appendChild(table);
+
+        }
+        
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+</body>
+</html>

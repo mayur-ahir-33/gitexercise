@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 2_6</title>
+</head>
+<body>
+    <script>
+        let arr=[];
+
+        function nsRange(start, end, step) {
+
+            if(end<start){
+                step = -step;
+            }
+
+
+            if(typeof(start) === "number") {
+                while(step>0?end>=start:end<=start) {
+                    arr.push(start)
+                    start += step;
+                }
+            }
+            else if(typeof(start) === "string") {
+
+                start = start.charCodeAt(0);
+                end = end.charCodeAt(0)
+
+                while(step>0?end>=start:end<=start) {
+                    arr.push(String.fromCharCode(start));
+                    start += step;
+                }
+            }
+
+            return arr;
+        }
+
+    </script>
+</body>
+</html>

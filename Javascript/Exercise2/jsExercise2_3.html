@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Excercise 2_3</title>
+</head>
+<body>
+    <script>
+
+        let arr1 = [2];
+        let arrMap = new Map();
+        let maxCount=1;
+
+        arr1.forEach(key => {
+            if(arrMap.has(key)) {
+                let v = arrMap.get(key);
+                v++;
+                arrMap.set(key, v);
+                maxCount = v>maxCount?v:maxCount;
+            }
+            else {
+                arrMap.set(key, 1);
+            }
+        });
+
+        for(let [k,val] of arrMap.entries()) {
+            if(val === maxCount)
+            {
+                document.write("Most Frequent: "+k+"<br>");
+                document.write("Frequency: "+val+"<br>");
+            }
+        }
+
+        
+        </script>
+
+        
+</body>
+</html>

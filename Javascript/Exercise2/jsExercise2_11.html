@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 2_11</title>
+</head>
+<body>
+    <script>
+     
+     function hideEmail(email) {
+         let divided = email.split('@');
+         let emailName = divided[0];
+         let avg = emailName.length/2;
+         let emailDomain = divided[1];
+         emailName = emailName.substring(0, (emailName.length-avg));
+         
+         console.log(emailName+"***"+"@"+emailDomain);
+     }
+
+    </script>
+</body>
+</html>
