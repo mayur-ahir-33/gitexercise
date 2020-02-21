@@ -44,7 +44,7 @@ const checkKey = (key) => {
         next = setInterval(function(){ 
             document.getElementById('box4').style.backgroundColor = colors[count++];
             count===colors.length?count=0:count; 
-        }, 3000);
+        }, 5000);
     }
     else if (key.keyCode == '37' || key.keyCode == '40') {
         clearInterval(next);
