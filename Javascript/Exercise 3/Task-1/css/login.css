@@ -1,0 +1,22 @@
+body {
+    background-color: ;
+}
+
+.container {
+    margin-top: 10%;
+}
+.card {
+    min-width: 60%;
+    min-height: 70%;
+}
+
+.card-header {
+    padding: 2% 45%;
+    background-color: royalblue;
+    color: white;
+    font-weight: bolder;
+}
+
+span {
+    color: red;
+}

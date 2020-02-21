@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin | RapidOps</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">   
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body  onload="displayCourse()">
+    <nav class="navbar navbar-expand-lg bg-primary sticky-top">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">RapidOps</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <button class="btn bg-transparent mt-1" id="profileBtn">
+                            <i class="fa fa-user-o" aria-hidden="true"></i> Mayur
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn bg-transparent mt-1" id="logoutBtn" onclick="logout()">
+                            <i class="fa fa-power-off" aria-hidden="true"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Control Panel-->
+    <div class="container d-flex justify-content-center mt-3">
+        <div class="card shadow mb-5 bg-white rounded" id="main-card">
+            <!-- Panel Header-->
+            <div class="card-header bg-primary">
+                <label for="admin" id="admin-name" class="mt-2">Admin Dashboard</label>
+                <button class="btn btn-outline-light float-right" data-toggle="modal" data-target="#addCourseModal">ADD</button>
+            </div>
+            <!-- Panel Body-->
+            <div class="card-body">
+                <div class="row ml-3" id="card-body-row">
+                    <!-- <div class="col-lg-3 mb-3">
+                        <div class="card" id="course-card">
+                            <a href="><div class="card-body" id="course-card-body">
+                                <img id="course-card-img">
+                            </div>
+                            <div class="card-footer" id="course-name">
+                                <i class="fa fa-book" aria-hidden="true"></i> Course Name
+                            </div></a>
+                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#assignModal">Assign Course</button>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Course Modal -->
+        <div class="modal fade" id="addCourseModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Course</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Enter name" id="courseName">
+                                <span id="spanCourseName"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Enter link" id="courseLink">
+                                <span id="spanCourseLink"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">Course Image</label>
+                                <input type="file" class="form-control-file" id="courseImage" accept="image/x-png,image/gif,image/jpeg">
+                                <span id="spanCourseImage"></span>
+                            </div>
+                         </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="validateAddCourse()">Add</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assign Modal -->
+        <div class="modal fade" id="assignModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Assign Course</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover" id="myTable">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>E-mail</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src=" ../js/admin.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
