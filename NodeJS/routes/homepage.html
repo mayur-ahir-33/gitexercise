@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NodeJS Exercise</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <div class="container d-flex justify-content-center align-items-center mt-5">
+            <input type="text" class="form-control mx-1" id="firstname" placeholder="Firstname">
+            <input type="text" class="form-control mx-1" id="lastname" placeholder="Lastname">
+            <button type="submit" class="btn btn-primary mx-1" id="btnAdd" onclick="check()">ADD</button>
+            <button type="submit" class="btn btn-primary mx-1" id="btnAdd" onclick="show()">RENDER</button>
+    </div>
+    <div class="container mt-3">
+        <div id="tableDiv">
+            <table class="table table-hover" id="myTable">
+                <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+
+        const fname = document.getElementById("firstname"),
+              lname = document.getElementById("lastname"),
+              btn = document.getElementById("btnAdd"),
+              table = document.getElementById("myTable"),
+              tableBody = document.getElementById("tableBody"),
+              userArr = new Array();
+        let selectedID, i;
+
+    // Check whether adding new user or updating existing user
+    const check = () => {
+        if(btn.innerText === "ADD") {
+            add();
+        }
+        else {
+            update();
+        }
+    }
+
+    // Displaying data in table
+    const show = () => {
+        
+        // Fetching data...
+                
+        fetch('http://localhost:3000/data')
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            data.forEach(user => {
+                userArr.push(user);
+
+                // Inserting new row
+
+                let rowCount = table.rows.length,
+                    row = table.insertRow(rowCount),
+                    fnameCell = row.insertCell(0),
+                    lnameCell = row.insertCell(1),
+                    editCell = row.insertCell(2),
+                    deleteCell = row.insertCell(3);
+
+                    fnameCell.innerHTML = user.firstname;
+                    lnameCell.innerHTML = user.lastname;
+                    editCell.innerHTML = '<span onclick="updateRow(this)"><i class="fa fa-pencil" aria-hidden="true"></i></span>';
+                    deleteCell.innerHTML = '<span onclick="deleteTableRow(this)"><i class="fa fa-trash" aria-hidden="true"></i></span>';
+            });
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
+    }
+
+    // When clicked on update button
+
+    const update = () => {
+        fetch('http://localhost:3000/updateUser', {
+                method: "PUT",
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: selectedID,
+                    firstname: fname.value,
+                    lastname: lname.value,
+                })
+            })
+            .then((response) =>{
+                return JSON.parse(JSON.stringify(response));
+            })
+            .then((result) => {
+                alert('User Updated!');
+            })
+            .catch((error) => {
+                alert(error);
+            });
+
+        
+        // Reflecting changes
+        userArr[i-1].fname = fname.value;
+        userArr[i-1].lname = lname.value;
+        
+        const objCells = table.rows.item(i).cells;
+        objCells.item(0).innerHTML = userArr[i-1].fname;
+        objCells.item(1).innerHTML = userArr[i-1].lname;
+
+        // Emptying input boxes
+        fname.value = '';
+        lname.value = '';
+
+        btn.innerText = "ADD";
+        
+    }
+
+    // Finding id(mongodb id) of selected row
+    const findID = (fname, lname) => {
+        const res = userArr.find((user)=>{
+            return (user.firstname === fname.value && user.lastname === lname.value);
+        })
+        return res._id;
+    }
+
+    // Changing label of ADD button and loading data in input boxes 
+
+    const updateRow = (r) => {
+
+        btn.innerText = "UPDATE";
+
+        // Finding which row has been selected
+
+        i = r.parentNode.parentNode.rowIndex;
+        const objCells = table.rows.item(i).cells;
+        fname.value = objCells.item(0).innerHTML;
+        lname.value = objCells.item(1).innerHTML;
+
+        selectedID = findID(fname, lname);
+    }
+
+    // Deleting user
+
+    const deleteTableRow = (r) => {
+
+        // Finding which row has been selected
+
+        i = r.parentNode.parentNode.rowIndex;
+        const objCells = table.rows.item(i).cells;
+        fname.value = objCells.item(0).innerHTML;
+        lname.value = objCells.item(1).innerHTML;
+
+        fetch('http://localhost:3000/deleteUser', {
+                method: "DELETE",
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: findID(fname, lname),
+                })
+            })
+            .then((response) =>{
+                return JSON.parse(JSON.stringify(response));
+            })
+            .then((result) => {
+                alert('User Deleted!');
+                // Reflecting change
+                table.deleteRow(i);
+            })
+            .catch((error) => {
+                alert(error);
+            });
+    }
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>
